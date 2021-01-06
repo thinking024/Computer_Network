@@ -122,7 +122,7 @@ void main()
 	//转换不成功时按域名解析
 	if (ulDestIP == INADDR_NONE)
 	{
-		hostent * pHostent = gethostbyname(IpAddress);
+		hostent* pHostent = gethostbyname(IpAddress);
 		if (pHostent)
 		{
 			printf("%s\n", pHostent->h_name);

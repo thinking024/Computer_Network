@@ -138,11 +138,6 @@ void Ping(char* IP)
         printf("设置参数失败！\n");
         return;
     }
-    if (setsockopt(sockRaw, SOL_SOCKET, SO_SNDTIMEO, (char*)&iTimeout, sizeof(iTimeout)) == SOCKET_ERROR)
-    {
-        printf("设置参数失败！\n");
-        return;
-    }
     //定义发送的数据段
     char IcmpSendBuf[DEF_ICMP_PACK_SIZE];
     //填充ICMP数据包个各字段
@@ -206,7 +201,14 @@ void Ping(char* IP)
         usSeqNo++;
     }
     // 输出屏幕信息
-    printf("主机 %s", IP);
+    printf("主机 %s ", IP);
+    struct in_addr addr;
+    addr.s_addr = inet_addr(IP);
+    HOSTENT* host = gethostbyaddr((const char*)&addr, 4, AF_INET);
+    if (host != NULL)
+    {
+        printf("%s ",host->h_name);
+    }
     if (arrive >= 3)
     {
         printf("在线\n\n");
