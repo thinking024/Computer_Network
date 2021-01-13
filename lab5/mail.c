@@ -197,7 +197,6 @@ void receiveEmail(char* acount, char* password)
     do
     {
         memset(rcvBuffer, 0, sizeof(rcvBuffer));
-        // rcv = recv(mailSocket, rcvBuffer, 1500, 0);
         if ((rcv = recv(mailSocket, rcvBuffer, 1500, 0)) > 0)
         {
             printf("%s", rcvBuffer);

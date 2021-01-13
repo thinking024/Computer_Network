@@ -4,7 +4,7 @@
 
 #pragma comment(lib, "Ws2_32.lib")
 int msgContinue = 1;
-const char* remoteAddr = "10.1.12.131";
+const char* remoteAddr = "127.0.0.1";
 
 DWORD WINAPI sendMsg(LPVOID sockConn)
 {
@@ -12,7 +12,6 @@ DWORD WINAPI sendMsg(LPVOID sockConn)
 		char sendBuf[50];
 		memset(sendBuf, 0, 50);
 		scanf("%s", sendBuf);
-		// sprintf(sendBuf, "Welcome %s to here!", inet_ntoa(addrClient.sin_addr));
 		send((SOCKET)sockConn, sendBuf, strlen(sendBuf) + 1, 0);
 		if (strcmp(sendBuf, "#") == 0)
 		{

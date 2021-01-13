@@ -15,7 +15,6 @@ DWORD WINAPI sendMsg(LPVOID sockConn)
         char sendBuf[50];
         memset(sendBuf, 0, 50);
         scanf("%s", sendBuf);
-        // sprintf(sendBuf, "Welcome %s to here!", inet_ntoa(addrClient.sin_addr));
         send((SOCKET)sockConn, sendBuf, strlen(sendBuf) + 1, 0); // 向客户端发送信息
         if (strcmp(sendBuf, "#") == 0)
 		{
@@ -112,18 +111,6 @@ int main()
         printf("fail to create receive thread\n");
         return -1;
     }
-    
-    // while (1)
-    // {
-    //     char recvBuf[50];
-    //     recv(sockConn, recvBuf, 50, 0); // 接收客户端发来的信息
-    //     printf("%s\n", recvBuf);
-    //     char sendBuf[50];
-    //     scanf("%s", sendBuf);
-    //     // sprintf(sendBuf, "Welcome %s to here!", inet_ntoa(addrClient.sin_addr));
-    //     send(sockConn, sendBuf, strlen(sendBuf) + 1, 0); // 向客户端发送信息
-    // }
-    // closesocket(sockConn);
     while (msgContinue)
 	{
 

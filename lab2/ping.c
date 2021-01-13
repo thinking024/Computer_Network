@@ -83,6 +83,7 @@ boolean DecodeIcmpResponse_Ping(char* pBuf, int iPacketSize, DECODE_RESULT* stDe
     //指针指向ICMP报文的首地址
     ICMP_HEADER* pIcmpHrd = (ICMP_HEADER*)(pBuf + iIphedLen);
     unsigned short usID, usSeqNo;
+    usID = -1;
     //获得的数据包的type字段为ICMP_ECHO_REPLY，即收到一个回显应答ICMP报文
     if (pIcmpHrd->type == ICMP_ECHO_REPLY)
     {
@@ -238,7 +239,7 @@ int main(int argc, char* argv[])
     {
         char ipLast[255] = { 0 };
         sprintf(ipLast, "%hd", i);
-        char IpAddress[255] = {};
+        char IpAddress[255] = {0};
         strcat(IpAddress, ipAddress);
         strcat(IpAddress, ipLast);
         Ping(IpAddress);
